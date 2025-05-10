@@ -15,9 +15,9 @@ struct Process {
     bool is_ready = false; // to check if process is in ready queue
 };
 
-double priority_calculator(Process &p, int current_time) {
+double priority_calculator(Process &p, int current_time, double alpha) {
     int waiting_time = current_time - p.arrival_time;
-    return (double)(waiting_time + p.burst_time) / p.burst_time + 0.05 * waiting_time;
+    return (double)(waiting_time + p.burst_time) / p.burst_time + alpha * waiting_time;
 }
 
 int32_t main(){
@@ -36,9 +36,23 @@ int32_t main(){
         processes[i].remaining_time = processes[i].burst_time;
     }
 
+    cout << "Alpha controls how much priority is given to waiting time (aging):\n";
+    cout << "  - Lower alpha (e.g., 0.05) -> favors short jobs, may reduce average response time.\n";
+    cout << "  - Medium alpha (e.g., 0.3 - 0.6) -> balanced approach, may optimize waiting and turnaround time.\n";
+    cout << "  - Higher alpha (e.g., >0.7) -> favors long-waiting jobs, helps prevent starvation, but may increase response time.\n";
+
+    double alpha;
+    cout << "Enter the value of alpha: ";
+    cin >> alpha;
+
+    while(alpha < 0.0 || alpha > 1.0) {
+        cout << "Invalid alpha! Please enter a value between 0 and 1: ";
+        cin >> alpha;
+    }
+
     int current_time = 0;
     int completed = 0;
-    int idx = -1; // to keep track of the last process executed
+    int idx = -1; 
     
     cout<<"Gantt Chart:\n";
     cout<<"0 ";
@@ -48,7 +62,7 @@ int32_t main(){
         
         for(int i=0; i<n; i++){
             if (processes[i].arrival_time <= current_time && processes[i].remaining_time) {
-                double priority = priority_calculator(processes[i], current_time);
+                double priority = priority_calculator(processes[i], current_time, alpha);
                 if (priority > max_priority) {
                     max_priority = priority;
                     idx = i;
