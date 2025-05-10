@@ -15,9 +15,9 @@ struct Process {
     bool is_ready = false; // to check if process is in ready queue
 };
 
-double priority_calculator(Process &p, int current_time, double alpha) {
+double priority_calculator(Process &p, int current_time) {
     int waiting_time = current_time - p.arrival_time;
-    return (double)(waiting_time + p.burst_time) / p.burst_time + alpha * waiting_time;
+    return (double)(waiting_time + p.burst_time) / p.burst_time + 0.05 * waiting_time;
 }
 
 int32_t main(){
@@ -36,7 +36,6 @@ int32_t main(){
         processes[i].remaining_time = processes[i].burst_time;
     }
 
-    double alpha = 0.05;
     int current_time = 0;
     int completed = 0;
     int idx = -1; // to keep track of the last process executed
@@ -49,7 +48,7 @@ int32_t main(){
         
         for(int i=0; i<n; i++){
             if (processes[i].arrival_time <= current_time && processes[i].remaining_time) {
-                double priority = priority_calculator(processes[i], current_time, alpha);
+                double priority = priority_calculator(processes[i], current_time);
                 if (priority > max_priority) {
                     max_priority = priority;
                     idx = i;
