@@ -556,6 +556,7 @@ int32_t main(){
                 cin >> processes[i].burst_time;
                 cout << "Enter the arrival time of P" << i + 1 << ": ";
                 cin >> processes[i].arrival_time;
+                processes[i].remaining_time = processes[i].burst_time;
             }
             if(choice==1) fcfs(processes, true);
             else if(choice==2) sjf(processes, true);
@@ -576,6 +577,7 @@ int32_t main(){
                 cin >> processes[i].arrival_time;
                 cout << "Enter the priority of P" << i + 1 << ": ";
                 cin >> processes[i].priority;
+                processes[i].remaining_time = processes[i].burst_time;
             }
             if(choice==4) priority(processes, true);
             if(choice==5) preemptive_priority(processes, false);
@@ -593,8 +595,6 @@ int32_t main(){
                 cout << "Enter arrival time of P" << i+1 << ": ";
                 cin >> processes[i].arrival_time;
                 processes[i].remaining_time = processes[i].burst_time;
-                processes[i].started = false;
-                processes[i].is_ready = false;
             }
 
             int time_quantum;
@@ -685,7 +685,6 @@ int32_t main(){
             cout<< "\nAlgo : Your Own Algorithm\n";
             own_algo(processes, alpha, false);
         }
-        else cout<<"Invalid choice! Please try again.\n";
     } while (choice != 9);
     cout<<"Exiting...\n";
 
