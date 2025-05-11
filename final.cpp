@@ -631,6 +631,7 @@ int32_t main(){
                 cout << "Invalid alpha! Please enter a value between 0 and 1: ";
                 cin >> alpha;
             }
+            own_algo(processes, alpha, true);
         }
         if(choice==8){
             cout << "Number of processes, n: ";
