@@ -71,7 +71,7 @@ void fcfs(vector<Process> processes, bool detail){
         total_turnaround_time += processes[i].turnaround_time;
     }
 
-    if(!detail) printf("Average response time : %.2f\n", total_waiting_time / n);
+    printf("Average response time : %.2f\n", total_waiting_time / n);
     printf("Average waiting time : %.2f\n", total_waiting_time / n);
     printf("Average turnaround time : %.2f\n", total_turnaround_time / n);
 }
@@ -135,7 +135,7 @@ void sjf(vector<Process> processes, bool detail){
             <<" Waiting time: "<<processes[j].waiting_time
             <<" Turnaround time: "<<processes[j].turnaround_time<<"\n";
     }
-    if(!detail) cout<<"Average response time: "<<waiting_sum/n<<"\n";
+    cout<<"Average response time: "<<waiting_sum/n<<"\n";
     cout<<"Average waiting time: "<<waiting_sum/n<<"\n";
     cout<<"Average turnaround time: "<<turnaround_sum/n<<"\n";       
 }
@@ -214,7 +214,7 @@ void preemptive_sjf(vector<Process> processes, bool detail){
             <<" Waiting time: "<<processes[j].waiting_time
             <<" Turnaround time: "<<processes[j].turnaround_time<<"\n";
     }
-    if(!detail) cout<<"Average response time: "<<response_sum/n<<"\n";
+    cout<<"Average response time: "<<response_sum/n<<"\n";
     cout<<"Average waiting time: "<<waiting_sum/n<<"\n";
     cout<<"Average turnaround time: "<<turnaround_sum/n<<"\n";
 }
@@ -277,7 +277,7 @@ void priority(vector<Process> processes, bool detail){
             <<" Waiting time: "<<processes[j].waiting_time
             <<" Turnaround time: "<<processes[j].turnaround_time<<"\n";
     }
-    if(!detail) cout<<"Average response time: "<<waiting_sum/n<<"\n";
+    cout<<"Average response time: "<<waiting_sum/n<<"\n";
     cout<<"Average waiting time: "<<waiting_sum/n<<"\n";
     cout<<"Average turnaround time: "<<turnaround_sum/n<<"\n";
 }
