@@ -580,7 +580,7 @@ int32_t main(){
                 processes[i].remaining_time = processes[i].burst_time;
             }
             if(choice==4) priority(processes, true);
-            if(choice==5) preemptive_priority(processes, false);
+            if(choice==5) preemptive_priority(processes, true);
         }
         if(choice==6){
             cout << "Number of processes, n: ";
