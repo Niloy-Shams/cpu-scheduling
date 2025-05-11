@@ -560,7 +560,7 @@ int32_t main(){
             }
             if(choice==1) fcfs(processes, true);
             else if(choice==2) sjf(processes, true);
-            else if(choice==3) preemptive_sjf(processes, false);
+            else if(choice==3) preemptive_sjf(processes, true);
         }
         else if (choice==4 || choice==5){
             cout << "Number of process, n: ";
